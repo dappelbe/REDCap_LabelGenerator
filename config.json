@@ -1,0 +1,124 @@
+{
+	"name": "Label Generator",
+	"namespace": "OCTRU\\LabelGenerator",
+	"description": "This module will create a label when a record is saved that will increment a counter and append that counter to a label that has been defined",
+	"documentation": "README.md",
+	"authors": [		{
+			"name": "Duncan Appelbe",
+			"email": "duncan.appelbe@ndorms.ox.ac.uk",
+			"institution": "University of Oxford - NDORMS"
+		}
+	],
+
+	"framework-version": 11,
+
+	"permissions": [
+		"redcap_save_record",
+		"hook_every_page_top"
+	],
+	
+	"enable-every-page-hooks-on-system-pages": false,
+
+	"links": {
+		"project": [],
+		"control-center": []
+	},
+
+	"no-auth-pages": [],
+
+	"project-settings": [
+		{
+			"key" : "info",
+			"name": "",
+			"type": "sub_settings",
+			"repeatable" : true,
+			"sub_settings" : [
+				{
+					"key" : "label-type",
+					"name": "Run on",
+					"type": "dropdown",
+					"choices": [
+						{ "name" : "Form Save", "value" : "1" },
+						{ "name" : "Form Load", "value" : "2" }
+					]
+				},
+				{
+					"key" : "run-on-form",
+					"name": "Form to Run on",
+					"type": "form-list"
+				},
+				{
+					"key" : "run-on-visit",
+					"name": "Visit to Run on",
+					"type": "event-list"
+				},
+				{
+					"key" : "study-prefix",
+					"name": "Study Prefix (e.g: FA)",
+					"type": "text"
+				},
+				{
+					"key" : "site-identifier",
+					"name": "Site identifier map (empty if not using)",
+					"type": "textarea"
+				},
+				{
+					"key" : "site-field-from",
+					"name": "Field to get the site from",
+					"type": "field-list"
+				},
+				{
+					"key" : "site-field-from-visit",
+					"name": "Visit that the field to get the site from",
+					"type": "event-list"
+				},
+				{
+					"key" : "number-seperator",
+					"name": "Seperator to use between prefix, site and counter",
+					"type": "text"
+				},
+				{
+					"key" : "ctr-type",
+					"name": "Sequential in",
+					"type": "dropdown",
+					"choices": [
+						{ "name" : "Site", "value" : "1" },
+						{ "name" : "Study", "value" : "2" }
+					]
+				},
+				{
+					"key" : "ctr-length",
+					"name": "Counter Range (will left pad with zeros)",
+					"type": "dropdown",
+					"choices": [
+						{ "name" : "1-9", "value" : "1" },
+						{ "name" : "10-99", "value" : "2" },
+						{ "name" : "100-999", "value" : "3" },
+						{ "name" : "1000-9999", "value" : "4" },
+						{ "name" : "10000-99999", "value" : "5" },
+						{ "name" : "100000-999999", "value" : "6" }
+					]
+				},
+				{
+					"key" : "ctr-field",
+					"name": "Field to count on (not empty, unique) - This is also the field the label will be stored in",
+					"type": "field-list"
+				},
+				{
+					"key" : "ctr-field-visit",
+					"name": "Counter field appears at visit",
+					"type": "event-list"
+				}
+			]
+		}
+	],
+
+	"system-settings": [],
+	"crons": [],
+
+	"compatibility": {
+		"php-version-min": "8.1",
+		"redcap-version-min": "14.0.5",
+		"redcap-version-max": ""
+	}
+}
